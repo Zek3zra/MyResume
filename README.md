@@ -1,0 +1,2 @@
+# MyResume
+I’m Jerow A. Amelo, a fourth-year Computer Engineering Technology undergraduate at the Technological University of the Philippines Visayas.  My work spans ESP32 and Arduino systems, sensor integration, circuit design, and web applications. I enjoy connecting physical devices to software that makes information easier to understand and use.  Alongside engineering projects, I manage social media and promotional content for Adriano’s, bringing a creative perspective to the way I build and communicate.
