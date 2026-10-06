@@ -1,0 +1,22 @@
+# Local hosting metadata and configuration
+.openai/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Dependencies and development artifacts
+node_modules/
+__pycache__/
+*.py[cod]
+*.log
+tmp/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Backup of the original nested repository
+.git-backup/
