@@ -20,7 +20,7 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('click', (event) => {
   if (!siteHeader.contains(event.target)) setNavigationOpen(false);
 });
-window.matchMedia('(min-width: 851px)').addEventListener('change', (event) => {
+window.matchMedia('(min-width: 1101px)').addEventListener('change', (event) => {
   if (event.matches) setNavigationOpen(false);
 });
 

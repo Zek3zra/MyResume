@@ -50,3 +50,27 @@
 .about-facts{padding-top:3rem;padding-bottom:3rem}
 @media(max-width:850px){.section-heading,.experience-heading{display:block}.section-heading>p,.experience-heading>p{margin-top:1.25rem;max-width:32rem;text-align:left;padding-top:0}}
 @media(max-width:680px){.about-facts{padding-top:2rem;padding-bottom:2rem}}
+
+/* Electronics portfolio: original project photos, grouped by discipline. */
+.header nav{gap:1.15rem}
+.electronics-category-nav{display:flex;flex-wrap:wrap;gap:.65rem;margin-bottom:3rem}
+.electronics-category-nav a{border:1px solid var(--line);border-radius:3px;padding:.55rem .9rem;font-size:.8125rem;background:#fff;transition:background .2s,color .2s}
+.electronics-category-nav a:hover{background:#111;color:#fff;border-color:#111}
+.electronics-category{margin-top:3rem;scroll-margin-top:calc(var(--header-height) + 1rem)}
+.electronics-category-heading{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-bottom:1.5rem}
+.electronics-category-heading h3{font-size:1.65rem;margin-top:.55rem}
+.electronics-category-heading>p{max-width:28rem;justify-self:end;text-align:right;color:var(--muted);font-size:.9375rem;padding-top:.25rem}
+.electronics-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.electronics-gallery-even{grid-template-columns:repeat(2,minmax(0,1fr))}
+.electronics-tile{margin:0;min-width:0;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
+.electronics-preview{border:0;border-bottom:1px solid var(--line);border-radius:0;aspect-ratio:4/3;background:#e8e8e8}
+.electronics-preview-layout{background:#111}
+.electronics-preview img{height:100%;aspect-ratio:auto;object-fit:contain;object-position:center}
+.electronics-tile figcaption{padding:1.25rem 1.3rem 1.5rem}
+.electronics-tile .meta-label{font-size:.625rem;text-transform:uppercase}
+.electronics-tile h4{font-family:var(--display);font-size:1.125rem;font-weight:500;line-height:1.4;letter-spacing:-.02em;margin:.55rem 0 .6rem}
+.electronics-tile figcaption p{font-size:.875rem;line-height:1.65;color:var(--muted)}
+.client-hardware .hardware-gallery{margin-bottom:1.5rem}
+@media(max-width:1100px){:root{--header-height:4.5rem}.nav-toggle{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem .8rem;border:1px solid #555;border-radius:3px;background:#111;color:white;font:inherit;font-size:.875rem;cursor:pointer}.nav-toggle svg{width:1.1rem;height:1.1rem}.header nav{display:none;position:absolute;top:100%;left:0;right:0;padding:1rem var(--page-inset) 1.5rem;background:#111;border-bottom:1px solid #444;gap:.5rem 1rem;box-shadow:0 15px 25px #0002}.header.menu-open nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.header nav a,.header nav a[href='#experience']{display:block;font-size:.875rem;padding:.75rem .6rem;border:1px solid #333;border-radius:3px;text-align:center}.header nav .nav-contact{background:#252525;border-color:#555}}
+@media(max-width:850px){.electronics-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.electronics-category-heading{display:block}.electronics-category-heading>p{text-align:left;margin-top:.8rem;padding-top:0;max-width:100%}}
+@media(max-width:680px){.header.menu-open nav{grid-template-columns:repeat(2,minmax(0,1fr))}.electronics-category-nav{gap:.5rem;margin-bottom:2rem}.electronics-category-nav a{font-size:.75rem;padding:.45rem .65rem}.electronics-gallery,.electronics-gallery-even{grid-template-columns:1fr;gap:1.25rem}.electronics-category{margin-top:2.5rem}.electronics-category-heading h3{font-size:1.45rem}.electronics-tile figcaption{padding:1.1rem 1.15rem 1.25rem}}
