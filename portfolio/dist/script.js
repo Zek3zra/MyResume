@@ -6,6 +6,7 @@ const siteNavigation = document.getElementById('site-navigation');
 function setNavigationOpen(open) {
   siteHeader.classList.toggle('menu-open', open);
   navigationToggle.setAttribute('aria-expanded', String(open));
+  navigationToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
 }
 navigationToggle.addEventListener('click', () => setNavigationOpen(navigationToggle.getAttribute('aria-expanded') !== 'true'));
 siteNavigation.addEventListener('click', (event) => {
@@ -291,32 +292,6 @@ syncElectronicsDecks();
 electronicsSection.classList.add('electronics-decks-ready');
 
 
-// Every category stays visible on mobile, with a compact jump menu.
-const electronicsJump = document.createElement('label');
-electronicsJump.className = 'electronics-mobile-jump';
-electronicsJump.textContent = 'Jump to category';
-const electronicsSelect = document.createElement('select');
-electronicsSelect.setAttribute('aria-label', 'Jump to electronics category');
-electronicsCategories.forEach((category) => {
-  const option = document.createElement('option');
-  option.value = category.id;
-  option.textContent = category.querySelector('h3').textContent;
-  electronicsSelect.append(option);
-});
-electronicsJump.append(electronicsSelect);
-electronicsSection.querySelector('.electronics-category-nav').after(electronicsJump);
-function syncElectronicsJump() {
-  electronicsSelect.value = selectedElectronicsCategory.id;
-}
-electronicsSelect.addEventListener('change', () => {
-  const category = document.getElementById(electronicsSelect.value);
-  selectElectronicsCategory(category);
-  if (location.hash !== '#' + category.id) location.hash = category.id;
-  else category.scrollIntoView({block: 'start'});
-});
-window.addEventListener('hashchange', syncElectronicsJump);
-syncElectronicsJump();
-
 const electronicsFlipCards = [...electronicsSection.querySelectorAll('.electronics-tile')].map((card, index) => {
   const preview = card.querySelector('[data-preview]');
   const caption = card.querySelector('figcaption');
@@ -379,6 +354,5 @@ const electronicsFlipCards = [...electronicsSection.querySelectorAll('.electroni
 });
 electronicsMobile.addEventListener('change', () => {
   electronicsFlipCards.forEach((card) => card.reset());
-  syncElectronicsJump();
 });
 electronicsSection.classList.add('electronics-flips-ready');
