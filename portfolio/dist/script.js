@@ -364,6 +364,9 @@ const electronicsFlipCards = [...electronicsSection.querySelectorAll('.electroni
     setFlipped(true, true);
   }, true);
   back.addEventListener('click', () => setFlipped(false, true));
+  caption.addEventListener('click', (event) => {
+    if (!electronicsMobile.matches && !event.target.closest('button, a')) setFlipped(false, true);
+  });
   caption.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !electronicsMobile.matches) {
       event.preventDefault();

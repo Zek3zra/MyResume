@@ -117,3 +117,11 @@
   .electronics-mobile-jump select{width:100%;min-height:3rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:#111;font:inherit;font-size:.9375rem;letter-spacing:0;padding:.7rem .8rem;text-transform:none}
   .electronics-mobile-jump select:focus-visible{outline:3px solid #888;outline-offset:3px}
 }
+
+@media(min-width:681px){.electronics-flips-ready .electronics-tile.is-flipped figcaption{cursor:pointer}}
+
+/* Electronics photos are always in color on phones, with no image hover animation. */
+@media(max-width:680px){
+  .electronics-preview img,.electronics-preview:hover img,.electronics-preview:focus-visible img{filter:none;transform:none;transition:none}
+  .electronics-preview .preview-label{opacity:1;transform:none;transition:none}
+}

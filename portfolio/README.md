@@ -9,7 +9,7 @@ Built with **HTML, CSS, and JavaScript**, with no build step or package dependen
 - Responsive layout with a sticky header and mobile navigation.
 - Portrait and project previews with grayscale-to-color hover effects.
 - Full-size image dialogs with keyboard support.
-- An Electronics section with 18 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
+- An Electronics section with 17 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
 - Five web projects with screenshots and live website links.
 - Client projects: Automated Fish Dryer, Arduino Client Projects, and Biometric Attendance.
 - Automatically updating GitHub contribution calendar for [@Zek3zra](https://github.com/Zek3zra), plus manual refresh.
