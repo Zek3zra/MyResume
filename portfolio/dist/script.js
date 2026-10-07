@@ -189,3 +189,94 @@ setInterval(() => {
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible' && Date.now() - lastContributionCheck >= refreshInterval) loadContributions();
 });
+
+
+// Compact, touch-friendly electronics decks on phones; full galleries elsewhere.
+const electronicsSection = document.getElementById('electronics');
+const electronicsMobile = window.matchMedia('(max-width: 680px)');
+const electronicsCategories = [...electronicsSection.querySelectorAll('.electronics-category')];
+const electronicsLinks = [...electronicsSection.querySelectorAll('.electronics-category-nav a')];
+let selectedElectronicsCategory = electronicsCategories[0];
+const electronicsDecks = electronicsCategories.map((category) => {
+  const gallery = category.querySelector('.electronics-gallery');
+  const cards = [...gallery.querySelectorAll('.electronics-tile')];
+  const controls = document.createElement('div');
+  controls.className = 'electronics-deck-controls';
+  const previous = document.createElement('button');
+  previous.type = 'button';
+  previous.textContent = '←';
+  previous.setAttribute('aria-label', 'Previous image in ' + category.querySelector('h3').textContent);
+  const status = document.createElement('p');
+  status.setAttribute('aria-live', 'polite');
+  status.setAttribute('aria-atomic', 'true');
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.textContent = '→';
+  next.setAttribute('aria-label', 'Next image in ' + category.querySelector('h3').textContent);
+  controls.append(previous, status, next);
+  gallery.after(controls);
+  const deck = { gallery, cards, status, index: 0 };
+  function showCard(index) {
+    deck.index = (index + cards.length) % cards.length;
+    cards.forEach((card, i) => {
+      const active = i === deck.index;
+      card.classList.toggle('is-front-card', active);
+      card.classList.toggle('is-next-card', i === (deck.index + 1) % cards.length && !active);
+      card.classList.toggle('is-previous-card', cards.length > 2 && i === (deck.index - 1 + cards.length) % cards.length && !active);
+      if (electronicsMobile.matches && !active) card.setAttribute('aria-hidden', 'true');
+      else card.removeAttribute('aria-hidden');
+      card.querySelector('[data-preview]').tabIndex = electronicsMobile.matches && !active ? -1 : 0;
+    });
+    status.textContent = `${deck.index + 1} / ${cards.length} · ${cards[deck.index].querySelector('h4').textContent}`;
+  }
+  deck.showCard = showCard;
+  previous.addEventListener('click', () => showCard(deck.index - 1));
+  next.addEventListener('click', () => showCard(deck.index + 1));
+  let pointerStart;
+  let suppressClickUntil = 0;
+  gallery.addEventListener('pointerdown', (event) => {
+    if (electronicsMobile.matches && event.pointerType !== 'mouse') pointerStart = { x: event.clientX, y: event.clientY };
+  });
+  gallery.addEventListener('pointercancel', () => { pointerStart = null; });
+  gallery.addEventListener('pointerup', (event) => {
+    if (!pointerStart) return;
+    const dx = event.clientX - pointerStart.x;
+    const dy = event.clientY - pointerStart.y;
+    pointerStart = null;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+      showCard(deck.index + (dx < 0 ? 1 : -1));
+      suppressClickUntil = Date.now() + 400;
+    }
+  });
+  gallery.addEventListener('click', (event) => {
+    if (!electronicsMobile.matches) return;
+    const card = event.target.closest('.electronics-tile');
+    if (!card) return;
+    if (Date.now() < suppressClickUntil || !card.classList.contains('is-front-card')) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (Date.now() >= suppressClickUntil) showCard(cards.indexOf(card));
+    }
+  }, true);
+  showCard(0);
+  return deck;
+});
+function selectElectronicsCategory(category) {
+  selectedElectronicsCategory = category;
+  electronicsCategories.forEach((item) => item.classList.toggle('is-selected-category', item === category));
+  electronicsLinks.forEach((link) => {
+    if (link.hash === '#' + category.id) link.setAttribute('aria-current', 'true');
+    else link.removeAttribute('aria-current');
+  });
+}
+function syncElectronicsDecks() {
+  const target = document.getElementById(location.hash.slice(1));
+  const category = target?.closest('.electronics-category');
+  selectElectronicsCategory(category || selectedElectronicsCategory);
+  electronicsDecks.forEach((deck) => deck.showCard(deck.index));
+}
+electronicsLinks.forEach((link) => link.addEventListener('click', () => selectElectronicsCategory(document.getElementById(link.hash.slice(1)))));
+electronicsMobile.addEventListener('change', syncElectronicsDecks);
+window.addEventListener('hashchange', syncElectronicsDecks);
+syncElectronicsDecks();
+electronicsSection.classList.add('electronics-decks-ready');
