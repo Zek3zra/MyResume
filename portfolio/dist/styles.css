@@ -79,10 +79,9 @@
 @media(max-width:850px){.electronics-gallery,.electronics-gallery-even{grid-template-columns:repeat(2,minmax(0,1fr))}.electronics-category-heading{display:block}.electronics-category-heading>p{text-align:left;margin-top:.8rem;padding-top:0;max-width:100%}}
 @media(max-width:680px){.header.menu-open nav{grid-template-columns:repeat(2,minmax(0,1fr))}.electronics-category-nav{gap:.5rem;margin-bottom:2rem}.electronics-category-nav a{font-size:.75rem;padding:.45rem .65rem}.electronics-gallery,.electronics-gallery-even{grid-template-columns:1fr;gap:1.25rem}.electronics-category{margin-top:2.5rem}.electronics-category-heading h3{font-size:1.45rem}.electronics-tile figcaption{padding:1.1rem 1.15rem 1.25rem}}
 
-/* A single category and layered image cards keep the phone gallery compact. */
+/* Each category uses its own layered image deck on phones. */
 .electronics-deck-controls{display:none}
 @media(max-width:680px){
-  .electronics-decks-ready .electronics-category:not(.is-selected-category){display:none}
   .electronics-category-nav a[aria-current='true']{background:#111;color:#fff;border-color:#111}
   .electronics-decks-ready .electronics-gallery{grid-template-columns:minmax(0,1fr);gap:0;padding:1rem 1.15rem .5rem;isolation:isolate;touch-action:pan-y}
   .electronics-decks-ready .electronics-tile{grid-area:1/1;align-self:stretch;visibility:hidden;opacity:0;pointer-events:none;transform:scale(.9);transition:transform .3s,opacity .3s;box-shadow:0 5px 18px #0001}
@@ -94,4 +93,27 @@
   .electronics-deck-controls button{width:2.75rem;height:2.75rem;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:#fff;color:#111;font:inherit;font-size:1.2rem;cursor:pointer}
   .electronics-deck-controls button:active{background:#111;color:#fff}
   .electronics-deck-controls p{text-align:center;font-size:.75rem;line-height:1.5;color:var(--muted);margin:0}
+}
+
+.electronics-mobile-jump,.electronics-card-title,.electronics-card-actions{display:none}
+@media(min-width:681px){
+  .electronics-flips-ready .electronics-tile{position:relative;perspective:1200px;border:0;overflow:visible;background:transparent}
+  .electronics-card-front,.electronics-flips-ready .electronics-tile figcaption{backface-visibility:hidden;transition:transform .55s cubic-bezier(.2,.7,.2,1);border:1px solid var(--line);border-radius:4px}
+  .electronics-card-front{height:100%;overflow:hidden;background:#fff;transform:rotateY(0)}
+  .electronics-card-title{display:block;padding:1.25rem 1.3rem;min-height:8rem;cursor:pointer}
+  .electronics-flips-ready .electronics-tile figcaption{position:absolute;inset:0;display:flex;flex-direction:column;overflow:auto;background:#111;color:#fff;transform:rotateY(-180deg);padding:1.75rem}
+  .electronics-flips-ready .electronics-tile figcaption .meta-label{color:#aaa}
+  .electronics-flips-ready .electronics-tile figcaption h4{font-size:1.5rem;margin:.85rem 0 1rem}
+  .electronics-flips-ready .electronics-tile figcaption p{color:#ccc;font-size:.9375rem}
+  .electronics-flips-ready .electronics-tile.is-flipped .electronics-card-front{transform:rotateY(180deg)}
+  .electronics-flips-ready .electronics-tile.is-flipped figcaption{transform:rotateY(0)}
+  .electronics-card-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:auto;padding-top:1.5rem}
+  .electronics-card-actions button{border:1px solid #666;border-radius:3px;background:#222;color:#fff;padding:.6rem .85rem;font:inherit;font-size:.8125rem;cursor:pointer}
+  .electronics-card-actions button:hover{background:#444}
+}
+@media(max-width:680px){
+  .electronics-decks-ready .electronics-category-nav{display:none}
+  .electronics-mobile-jump{display:flex;flex-direction:column;gap:.55rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2rem;color:var(--muted)}
+  .electronics-mobile-jump select{width:100%;min-height:3rem;border:1px solid var(--line);border-radius:3px;background:#fff;color:#111;font:inherit;font-size:.9375rem;letter-spacing:0;padding:.7rem .8rem;text-transform:none}
+  .electronics-mobile-jump select:focus-visible{outline:3px solid #888;outline-offset:3px}
 }

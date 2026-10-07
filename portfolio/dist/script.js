@@ -29,15 +29,16 @@ const previewImage = document.getElementById('preview-image');
 const previewTitle = document.getElementById('image-dialog-title');
 let previewTrigger;
 
+function openImagePreview(button, trigger = button) {
+  previewTrigger = trigger;
+  previewImage.src = button.dataset.preview;
+  previewImage.alt = button.querySelector('img').alt;
+  previewTitle.textContent = button.dataset.title;
+  previewDialog.showModal();
+  document.body.classList.add('preview-open');
+}
 document.querySelectorAll('[data-preview]').forEach((button) => {
-  button.addEventListener('click', () => {
-    previewTrigger = button;
-    previewImage.src = button.dataset.preview;
-    previewImage.alt = button.querySelector('img').alt;
-    previewTitle.textContent = button.dataset.title;
-    previewDialog.showModal();
-    document.body.classList.add('preview-open');
-  });
+  button.addEventListener('click', () => openImagePreview(button));
 });
 
 document.getElementById('close-preview').addEventListener('click', () => previewDialog.close());
@@ -66,6 +67,13 @@ const refreshInterval = 5 * 60 * 1000;
 const contributionDateFormat = new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 let contributionsLoading = false;
 let lastContributionCheck = 0;
+const contributionScroll = document.querySelector('.contribution-scroll');
+function showLatestMobileContributions() {
+  if (window.matchMedia('(max-width: 680px)').matches && !contributionChart.hidden) {
+    requestAnimationFrame(() => { contributionScroll.scrollLeft = contributionScroll.scrollWidth; });
+  }
+}
+window.addEventListener('resize', showLatestMobileContributions, {passive: true});
 
 function contributionDescription(day) {
   return `${day.count} ${day.count === 1 ? 'contribution' : 'contributions'} on ${contributionDateFormat.format(new Date(`${day.date}T00:00:00Z`))}`;
@@ -126,6 +134,7 @@ function renderContributions(payload) {
   contributionDetail.textContent = activeCell.title;
   contributionChart.hidden = false;
   if (focusedDate) activeCell.focus({ preventScroll: true });
+  else showLatestMobileContributions();
 }
 
 async function loadContributions() {
@@ -280,3 +289,93 @@ electronicsMobile.addEventListener('change', syncElectronicsDecks);
 window.addEventListener('hashchange', syncElectronicsDecks);
 syncElectronicsDecks();
 electronicsSection.classList.add('electronics-decks-ready');
+
+
+// Every category stays visible on mobile, with a compact jump menu.
+const electronicsJump = document.createElement('label');
+electronicsJump.className = 'electronics-mobile-jump';
+electronicsJump.textContent = 'Jump to category';
+const electronicsSelect = document.createElement('select');
+electronicsSelect.setAttribute('aria-label', 'Jump to electronics category');
+electronicsCategories.forEach((category) => {
+  const option = document.createElement('option');
+  option.value = category.id;
+  option.textContent = category.querySelector('h3').textContent;
+  electronicsSelect.append(option);
+});
+electronicsJump.append(electronicsSelect);
+electronicsSection.querySelector('.electronics-category-nav').after(electronicsJump);
+function syncElectronicsJump() {
+  electronicsSelect.value = selectedElectronicsCategory.id;
+}
+electronicsSelect.addEventListener('change', () => {
+  const category = document.getElementById(electronicsSelect.value);
+  selectElectronicsCategory(category);
+  if (location.hash !== '#' + category.id) location.hash = category.id;
+  else category.scrollIntoView({block: 'start'});
+});
+window.addEventListener('hashchange', syncElectronicsJump);
+syncElectronicsJump();
+
+const electronicsFlipCards = [...electronicsSection.querySelectorAll('.electronics-tile')].map((card, index) => {
+  const preview = card.querySelector('[data-preview]');
+  const caption = card.querySelector('figcaption');
+  caption.id = 'electronics-card-details-' + index;
+  const front = document.createElement('div');
+  front.className = 'electronics-card-front';
+  const title = document.createElement('div');
+  title.className = 'electronics-card-title';
+  title.append(caption.querySelector('.meta-label').cloneNode(true), caption.querySelector('h4').cloneNode(true));
+  card.prepend(front);
+  front.append(preview, title);
+  const actions = document.createElement('div');
+  actions.className = 'electronics-card-actions';
+  const back = document.createElement('button');
+  back.type = 'button';
+  back.textContent = 'Back to image';
+  const enlarge = document.createElement('button');
+  enlarge.type = 'button';
+  enlarge.textContent = 'Enlarge image';
+  enlarge.setAttribute('aria-label', 'Enlarge ' + preview.dataset.title);
+  actions.append(back, enlarge);
+  caption.append(actions);
+  function setFlipped(flipped, moveFocus = false) {
+    flipped = flipped && !electronicsMobile.matches;
+    card.classList.toggle('is-flipped', flipped);
+    front.inert = flipped;
+    caption.inert = !electronicsMobile.matches && !flipped;
+    if (electronicsMobile.matches) {
+      preview.removeAttribute('aria-expanded');
+      preview.removeAttribute('aria-controls');
+      preview.setAttribute('aria-label', 'Enlarge ' + preview.dataset.title);
+      preview.querySelector('.preview-label').textContent = 'Enlarge image';
+    } else {
+      preview.setAttribute('aria-expanded', String(flipped));
+      preview.setAttribute('aria-controls', caption.id);
+      preview.setAttribute('aria-label', 'Show details for ' + preview.dataset.title);
+      preview.querySelector('.preview-label').textContent = 'View details';
+    }
+    if (moveFocus) (flipped ? back : preview).focus({preventScroll: true});
+  }
+  front.addEventListener('click', (event) => {
+    if (electronicsMobile.matches) return;
+    event.preventDefault();
+    event.stopPropagation();
+    setFlipped(true, true);
+  }, true);
+  back.addEventListener('click', () => setFlipped(false, true));
+  caption.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !electronicsMobile.matches) {
+      event.preventDefault();
+      setFlipped(false, true);
+    }
+  });
+  enlarge.addEventListener('click', () => openImagePreview(preview, enlarge));
+  setFlipped(false);
+  return {reset: () => setFlipped(false)};
+});
+electronicsMobile.addEventListener('change', () => {
+  electronicsFlipCards.forEach((card) => card.reset());
+  syncElectronicsJump();
+});
+electronicsSection.classList.add('electronics-flips-ready');
