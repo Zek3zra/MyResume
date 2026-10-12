@@ -356,3 +356,60 @@ electronicsMobile.addEventListener('change', () => {
   electronicsFlipCards.forEach((card) => card.reset());
 });
 electronicsSection.classList.add('electronics-flips-ready');
+
+
+// Native swipe galleries keep the thesis photos compact on phones.
+const thesisMobile = window.matchMedia('(max-width: 680px)');
+const thesisGalleries = [...document.querySelectorAll('.thesis-gallery')].map((gallery) => {
+  const cards = [...gallery.querySelectorAll('.thesis-card')];
+  const groupTitle = gallery.closest('.thesis-gallery-group').querySelector('h3').textContent;
+  const controls = document.createElement('div');
+  controls.className = 'thesis-gallery-controls';
+  const previous = document.createElement('button');
+  previous.type = 'button';
+  previous.textContent = '←';
+  previous.setAttribute('aria-label', 'Previous image in ' + groupTitle);
+  previous.setAttribute('aria-controls', gallery.id);
+  const status = document.createElement('p');
+  status.setAttribute('aria-live', 'polite');
+  status.setAttribute('aria-atomic', 'true');
+  const next = document.createElement('button');
+  next.type = 'button';
+  next.textContent = '→';
+  next.setAttribute('aria-label', 'Next image in ' + groupTitle);
+  next.setAttribute('aria-controls', gallery.id);
+  controls.append(previous, status, next);
+  gallery.after(controls);
+  let index = 0;
+  let scrollFrame;
+  function update() {
+    if (thesisMobile.matches) {
+      index = cards.reduce((best, card, i) => Math.abs(card.offsetLeft - gallery.scrollLeft) < Math.abs(cards[best].offsetLeft - gallery.scrollLeft) ? i : best, 0);
+    } else index = 0;
+    cards.forEach((card, i) => { card.inert = thesisMobile.matches && i !== index; });
+    previous.disabled = index === 0;
+    next.disabled = index === cards.length - 1;
+    status.textContent = `${index + 1} / ${cards.length} · ${cards[index].querySelector('h4').textContent}`;
+  }
+  function move(step) {
+    const target = Math.max(0, Math.min(cards.length - 1, index + step));
+    gallery.scrollTo({left: cards[target].offsetLeft, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  }
+  previous.addEventListener('click', () => move(-1));
+  next.addEventListener('click', () => move(1));
+  gallery.addEventListener('keydown', (event) => {
+    if (!thesisMobile.matches || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    event.preventDefault();
+    move(event.key === 'ArrowRight' ? 1 : -1);
+  });
+  gallery.addEventListener('scroll', () => {
+    cancelAnimationFrame(scrollFrame);
+    scrollFrame = requestAnimationFrame(update);
+  }, {passive: true});
+  const observer = new ResizeObserver(update);
+  observer.observe(gallery);
+  update();
+  return {update};
+});
+thesisMobile.addEventListener('change', () => thesisGalleries.forEach(({update}) => update()));
+document.getElementById('thesis').classList.add('thesis-galleries-ready');

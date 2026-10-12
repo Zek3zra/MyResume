@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#111111">
   <title>Jerow Amelo — Engineering & Web</title>
   <link rel="icon" type="image/png" href="assets/favicon-white.png?v=2">
-  <link rel="stylesheet" href="styles.css?v=17">
-  <script src="script.js?v=11" defer></script>
+  <link rel="stylesheet" href="styles.css?v=18">
+  <script src="script.js?v=12" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -16,7 +16,7 @@
     <a class="logo" href="#home" aria-label="Jerow Amelo home">JA<span class="logo-dot">.</span></a>
     <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="nav-icon-menu" d="M4 6h16M4 12h16M4 18h16"/><path class="nav-icon-close" d="M6 6l12 12M18 6L6 18"/></svg></button>
     <nav id="site-navigation" aria-label="Main navigation">
-      <a href="#about">About</a><a href="#electronics">Electronics</a><a href="#client-hardware">Client hardware</a><a href="#projects">Web systems</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#experience">Experience</a><a class="nav-contact" href="#contact">Let’s connect</a>
+      <a href="#about">About</a><a href="#electronics">Electronics</a><a href="#thesis">Thesis</a><a href="#client-hardware">Client hardware</a><a href="#projects">Web systems</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#experience">Experience</a><a class="nav-contact" href="#contact">Let’s connect</a>
     </nav>
   </header>
   <main id="main">
@@ -118,8 +118,68 @@
       </section>
     </section>
 
+    <section class="section thesis" id="thesis" aria-labelledby="thesis-title">
+      <div class="section-label"><span>03 / KEY PROJECT &amp; THESIS</span><span>LEADING A CONNECTED CAMPUS PROJECT</span></div>
+      <div class="section-heading"><h2 id="thesis-title">AquaWatch.<br>From sensing to status.</h2><p>An IoT-enabled water dispenser management system developed for the Technological University of the Philippines Visayas.</p></div>
+      <article class="thesis-feature">
+        <figure class="thesis-team">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/thesis-team.jpg" data-title="AquaWatch — The AquaWatch thesis team" aria-label="Enlarge The AquaWatch thesis team"><img src="assets/aquawatch-thesis/thesis-team.jpg" alt="The AquaWatch thesis team outside TUP Visayas with their documents and campus map prototype." width="2100" height="1576" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Thesis presentation</span><h4>The AquaWatch thesis team</h4><p>Our thesis team at TUP Visayas, with the project documents and physical campus dashboard.</p></figcaption>
+        </figure>
+        <div class="thesis-copy"><span class="thesis-role">Project &amp; Thesis Leader</span><h3>Connecting the hardware,<br>the team, and the campus.</h3><p>I led the AquaWatch thesis project, bringing together load-cell sensing, ESP32 monitoring nodes, a physical LED campus map, and a web platform.</p><p>Two weighing units estimate remaining water from calibrated weight readings. Their data travel over Wi-Fi to a cloud database, where the web dashboard and a separate ESP32-powered campus display retrieve the latest dispenser status.</p><div class="tags"><span>ESP32</span><span>HX711</span><span>Load-cell sensing</span><span>Calibration</span><span>RGB indicators</span><span>IoT</span></div><a class="project-live" href="#projects">See the web dashboard</a></div>
+      </article>
+      <div class="thesis-results" aria-labelledby="thesis-results-title"><div class="thesis-results-heading"><h3 id="thesis-results-title">Tested as a complete system.</h3><p>Controlled prototype testing across two monitoring nodes: 10 trials per test, with 50 observations across five tests.</p></div><dl class="thesis-metrics"><div><dt>Mean absolute weight error</dt><dd>8.00 <span>g</span></dd></div><div><dt>Mean transmission latency</dt><dd>1.64 <span>s</span></dd></div><div><dt>Correct status classifications</dt><dd>10 <span>/ 10 trials</span></dd></div></dl><p class="thesis-test-note">Results apply to the controlled tests documented in our thesis. Live operation depends on calibration, stable loading, power, and internet connectivity.</p></div>
+      <div class="thesis-gallery-group" aria-labelledby="thesis-hardware-title">
+        <div class="thesis-gallery-heading"><div><span class="meta-label">01 / HARDWARE</span><h3 id="thesis-hardware-title">Sensing & embedded hardware</h3></div><p>The platform and circuits that turn dispenser weight into water availability.</p></div>
+        <div class="thesis-gallery" id="thesis-hardware-gallery" tabindex="0" aria-label="Sensing & embedded hardware image gallery">
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/dispenser-prototype.png" data-title="AquaWatch — Dispenser monitoring unit" aria-label="Enlarge Dispenser monitoring unit"><img src="assets/aquawatch-thesis/dispenser-prototype.png" alt="Water dispenser installed on the AquaWatch weighing platform with a support frame and guard rails." width="1080" height="1080" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Assembled prototype</span><h4>Dispenser monitoring unit</h4><p>The weighing platform supports an existing dispenser, with guard rails and a removable cover around the sensing assembly.</p></figcaption>
+        </figure>
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview thesis-diagram" type="button" data-preview="assets/aquawatch-thesis/load-cell-platform.png" data-title="AquaWatch — Load-cell weighing platform" aria-label="Enlarge Load-cell weighing platform"><img src="assets/aquawatch-thesis/load-cell-platform.png" alt="Annotated load-cell platform showing the Mavin NA4 sensor, plywood boards, steel plates, spacers, and mounting bolts." width="1080" height="1080" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Mechanical design</span><h4>Load-cell weighing platform</h4><p>A Mavin NA4 100 kg load cell mounted between marine plywood platforms, steel stabilization plates, and spacers.</p></figcaption>
+        </figure>
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview thesis-diagram" type="button" data-preview="assets/aquawatch-thesis/sensing-node-wiring.png" data-title="AquaWatch — Load cell → HX711 → ESP32" aria-label="Enlarge Load cell → HX711 → ESP32"><img src="assets/aquawatch-thesis/sensing-node-wiring.png" alt="Annotated wiring diagram connecting a Mavin NA4 load cell to an HX711 module and ESP32 DevKit V1." width="1999" height="1077" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Sensor integration</span><h4>Load cell → HX711 → ESP32</h4><p>The sensing node converts load-cell readings into weight measurements, applies calibration, and sends dispenser data over Wi-Fi.</p></figcaption>
+        </figure>
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview thesis-diagram" type="button" data-preview="assets/aquawatch-thesis/rgb-dashboard-wiring.png" data-title="AquaWatch — Physical dashboard controller" aria-label="Enlarge Physical dashboard controller"><img src="assets/aquawatch-thesis/rgb-dashboard-wiring.png" alt="Wiring diagram for an ESP32 controller connected to two RGB LEDs through current-limiting resistors." width="1080" height="820" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Indicator circuit</span><h4>Physical dashboard controller</h4><p>A separate ESP32 drives the two RGB indicators for Nodes 2 and 3, with 220-ohm resistors on the LED channels.</p></figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="thesis-gallery-group" aria-labelledby="thesis-campus-map-title">
+        <div class="thesis-gallery-heading"><div><span class="meta-label">02 / PHYSICAL DASHBOARD</span><h3 id="thesis-campus-map-title">A campus map that lights up</h3></div><p>A public display of dispenser availability, from assembly to installation.</p></div>
+        <div class="thesis-gallery" id="thesis-campus-map-gallery" tabindex="0" aria-label="A campus map that lights up image gallery">
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/campus-map-assembly.jpg" data-title="AquaWatch — Building the physical campus map" aria-label="Enlarge Building the physical campus map"><img src="assets/aquawatch-thesis/campus-map-assembly.jpg" alt="AquaWatch physical campus map being assembled on a table." width="1536" height="2048" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Assembly</span><h4>Building the physical campus map</h4><p>Assembling the framed TUPV campus map and its protective acrylic cover.</p></figcaption>
+        </figure>
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/installed-campus-map.jpg" data-title="AquaWatch — Water availability at a glance" aria-label="Enlarge Water availability at a glance"><img src="assets/aquawatch-thesis/installed-campus-map.jpg" alt="Installed AquaWatch campus map with illuminated dispenser-status LEDs." width="1536" height="2048" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Physical dashboard</span><h4>Water availability at a glance</h4><p>The installed campus map uses RGB indicators to show the availability of the two monitored dispensers.</p></figcaption>
+        </figure>
+        </div>
+      </div>
+      <div class="thesis-gallery-group" aria-labelledby="thesis-installation-title">
+        <div class="thesis-gallery-heading"><div><span class="meta-label">03 / CAMPUS SETUP</span><h3 id="thesis-installation-title">Bringing the prototype to campus</h3></div><p>Setting up the weighing platform and checking the connected monitoring unit.</p></div>
+        <div class="thesis-gallery" id="thesis-installation-gallery" tabindex="0" aria-label="Bringing the prototype to campus image gallery">
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/platform-installation.jpeg" data-title="AquaWatch — Setting up the weighing platform" aria-label="Enlarge Setting up the weighing platform"><img src="assets/aquawatch-thesis/platform-installation.jpeg" alt="A team member working on the AquaWatch weighing platform next to a campus water dispenser." width="1179" height="884" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Installation</span><h4>Setting up the weighing platform</h4><p>Setting up the weighing assembly and wiring before placing the dispenser on the platform.</p></figcaption>
+        </figure>
+        <figure class="thesis-card">
+          <button class="project-preview thesis-preview" type="button" data-preview="assets/aquawatch-thesis/campus-monitoring-check.jpg" data-title="AquaWatch — Checking the monitoring unit" aria-label="Enlarge Checking the monitoring unit"><img src="assets/aquawatch-thesis/campus-monitoring-check.jpg" alt="Team members checking their phones beside an AquaWatch dispenser monitoring unit on campus." width="1180" height="1572" loading="lazy" decoding="async"><span class="preview-label">Enlarge image</span></button>
+          <figcaption><span class="meta-label">Campus setup</span><h4>Checking the monitoring unit</h4><p>Checking the installed dispenser monitoring unit alongside the mobile web interface on campus.</p></figcaption>
+        </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="section client-hardware" id="client-hardware" aria-labelledby="client-hardware-title">
-      <div class="section-label"><span>03 / CLIENT HARDWARE</span><span>TURNING REQUIREMENTS INTO PROTOTYPES</span></div>
+      <div class="section-label"><span>04 / CLIENT HARDWARE</span><span>TURNING REQUIREMENTS INTO PROTOTYPES</span></div>
       <div class="section-heading"><h2 id="client-hardware-title">Built for our clients.</h2><p>Arduino and embedded hardware projects I designed and built for our clients, from automated drying to fingerprint attendance.</p></div>
       <div class="project-gallery hardware-gallery">
         <article class="project-card"><button class="project-preview project-photo" type="button" data-preview="assets/fish-dryer.png" data-title="Automated fish dryer — client project" aria-label="Enlarge Arduino fish dryer project photo"><img src="assets/fish-dryer.png" alt="Arduino fish dryer built for clients, presented alongside the project group" width="1448" height="1086" loading="lazy"><span class="preview-label">View project photo</span></button><div class="project-card-content"><span class="meta-label">01 / CLIENT PROJECT · EMBEDDED SYSTEMS</span><h3>Automated Fish Dryer</h3><p>A standalone Arduino-based system I designed and built for a client to automate the fish drying process.</p><div class="tags"><span>Arduino</span><span>Automation</span><span>Client work</span></div></div></article>
@@ -129,11 +189,11 @@
     </section>
 
     <section class="section projects" id="projects" aria-labelledby="projects-title">
-      <div class="section-label"><span>04 / WEB SYSTEMS</span><span>CONNECTED, USEFUL EXPERIENCES</span></div>
+      <div class="section-label"><span>05 / WEB SYSTEMS</span><span>CONNECTED, USEFUL EXPERIENCES</span></div>
       <div class="section-heading"><h2 id="projects-title">Web systems.<br>Real-world purpose.</h2><p>Web systems I developed for campus monitoring, business operations, ordering, and student communities.</p></div>
       <article class="featured-project">
         <button class="project-preview featured-preview" type="button" data-preview="assets/aquawatch.png" data-title="AquaWatch — campus water monitoring" aria-label="Enlarge AquaWatch screenshot"><span class="preview-browser" aria-hidden="true"><span class="browser-dots">● ● ●</span><span>aquawatch-tupv.vercel.app</span></span><img src="assets/aquawatch.png" alt="AquaWatch homepage with real-time water dispenser monitoring and live map controls" width="1901" height="958" loading="lazy"><span class="preview-label">Enlarge preview</span></button>
-        <div class="featured-copy"><span class="meta-label">01 / FEATURED · IoT + WEB</span><h3>AquaWatch</h3><p>A campus water dispenser monitoring and mapping system. ESP32 devices and load-cell sensing connect physical water levels to a real-time web dashboard.</p><div class="tags"><span>ESP32</span><span>HX711</span><span>Load cells</span><span>Wi-Fi</span><span>IoT</span></div><a class="project-live" href="https://aquawatch-tupv.vercel.app/" target="_blank" rel="noopener noreferrer">Visit live website</a></div>
+        <div class="featured-copy"><span class="meta-label">01 / THESIS WEB DASHBOARD</span><h3>AquaWatch</h3><p>The web platform for the AquaWatch thesis I led, with a live campus map, water availability and connection status, calibration management, consumption estimates, projected refill times, and CSV reports.</p><div class="tags"><span>ESP32</span><span>HX711</span><span>Load cells</span><span>Wi-Fi</span><span>IoT</span></div><a class="project-live" href="https://aquawatch-tupv.vercel.app/" target="_blank" rel="noopener noreferrer">Visit live website</a></div>
       </article>
       <div class="project-gallery">
         <article class="project-card"><button class="project-preview" type="button" data-preview="assets/adrianos.png" data-title="Adriano’s — product performance report" aria-label="Enlarge Adriano’s screenshot"><span class="preview-browser" aria-hidden="true"><span class="browser-dots">● ● ●</span><span>adrianos.vercel.app</span></span><img src="assets/adrianos.png" alt="Adriano’s product performance report with date and branch filters, cup inventory, and product analytics" width="1916" height="975" loading="lazy"><span class="preview-label">Enlarge preview</span></button><div class="project-card-content"><span class="meta-label">02 / BUSINESS WEB APPLICATION</span><h3>Adriano’s</h3><p>A web application for Adriano’s inventory management, expense logging, and employee scheduling.</p><a class="project-live" href="https://adrianos.vercel.app/" target="_blank" rel="noopener noreferrer">Visit live website</a></div></article>
@@ -144,7 +204,7 @@
       <section class="github-activity" id="github-activity" aria-labelledby="github-activity-title"><div class="activity-heading"><div><span class="meta-label">THE WORK BETWEEN PROJECTS</span><h3 id="github-activity-title">A year of building.</h3></div><a class="button button-dark github-button" href="https://github.com/Zek3zra" target="_blank" rel="noopener noreferrer">Find me on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1-4-2-6-2m12 5v-4c0-1 .1-2-1-3 3-.3 6-1.5 6-5 0-1.2-.4-2.3-1.2-3.2.1-.5.5-2-.1-3.8 0 0-1.1-.3-3.7 1.4a13 13 0 0 0-7 0C5.4 2.7 4.3 3 4.3 3c-.6 1.8-.2 3.3-.1 3.8C3.4 7.7 3 8.8 3 10c0 3.5 3 4.7 6 5-1 1-1 2-1 3v4"/></svg></a></div><div class="contribution-panel"><div class="contribution-toolbar"><p id="contribution-total">GitHub contributions</p><button class="refresh-contributions" id="refresh-contributions" type="button">Refresh</button></div><p id="contribution-status" class="contribution-status" role="status">Loading GitHub activity…</p><div id="contribution-chart" hidden><div class="contribution-scroll" tabindex="0" aria-label="GitHub contribution calendar. Scroll horizontally to explore the past year."><div class="contribution-calendar"><div class="contribution-months" id="contribution-months" aria-hidden="true"></div><div class="contribution-days" aria-hidden="true"><span>Mon</span><span>Wed</span><span>Fri</span></div><div class="contribution-weeks" id="contribution-weeks" role="group" aria-label="Daily contributions. Use arrow keys to explore dates; Home and End go to the first and last date."></div></div></div><div class="contribution-footer"><p id="contribution-detail" aria-live="polite">Select a day to see its contribution count.</p><div class="contribution-legend" aria-label="Contribution intensity: less to more"><span>Less</span><i data-level="0"></i><i data-level="1"></i><i data-level="2"></i><i data-level="3"></i><i data-level="4"></i><span>More</span></div></div></div><noscript><p>Enable JavaScript to load the calendar, or <a href="https://github.com/Zek3zra">view my activity on GitHub</a>.</p></noscript></div></section>
     </section>
 
-    <section class="section skills" id="skills" aria-labelledby="skills-title"><div class="section-label"><span>05 / TOOLKIT</span><span>WHAT I WORK WITH</span></div><h2 id="skills-title">A foot in both worlds.</h2><div class="skills-grid">
+    <section class="section skills" id="skills" aria-labelledby="skills-title"><div class="section-label"><span>06 / TOOLKIT</span><span>WHAT I WORK WITH</span></div><h2 id="skills-title">A foot in both worlds.</h2><div class="skills-grid">
       <div class="skill-group"><span class="skill-number">01</span><h3>Electronics</h3><p>PCB & schematic design · Circuit design & analysis · Sensor interfacing & calibration</p></div>
       <div class="skill-group"><span class="skill-number">02</span><h3>Embedded & IoT</h3><p>ESP32 · Arduino · Sensor integration · Real-time data collection · Wi-Fi communication</p></div>
       <div class="skill-group"><span class="skill-number">03</span><h3>Programming</h3><p>C / C++ · Python · Java · Basic SQL</p></div>
@@ -152,7 +212,7 @@
     </div></section>
 
     <section class="section education" id="education" aria-labelledby="education-title">
-      <div class="section-label"><span>06 / EDUCATION</span><span>THE FOUNDATION</span></div>
+      <div class="section-label"><span>07 / EDUCATION</span><span>THE FOUNDATION</span></div>
       <div class="education-grid">
         <article class="education-main"><div class="university-brand"><img src="assets/tupv-seal.webp" alt="Technological University of the Philippines seal" width="1280" height="1280" loading="lazy"><div><span class="meta-label">TUP VISAYAS</span><h3>Technological University<br>of the Philippines Visayas</h3></div></div><span class="education-status">Fourth-year undergraduate</span><h2 id="education-title">BS Engineering Technology</h2><p class="education-major">Major in Computer Engineering Technology</p><div class="coursework"><h3>Relevant coursework</h3><p>Circuit Design · Electronics · Embedded Systems · Internet of Things · Machine Learning · Web Development</p></div></article>
         <aside class="education-certifications" aria-label="Certifications"><span class="meta-label">CONTINUING TO LEARN</span><h3>Certifications</h3><div class="certificate"><span class="certificate-number">01</span><div><h4>Robotics Level 1</h4><p>International Certificate</p></div></div><div class="certificate"><span class="certificate-number">02</span><div><h4>DigiWork Expo</h4><p>Certificate</p></div></div></aside>
@@ -160,7 +220,7 @@
     </section>
 
     <section class="section experience" id="experience" aria-labelledby="experience-title">
-      <div class="section-label"><span>07 / EXPERIENCE</span><span>LEARNING THROUGH DOING</span></div>
+      <div class="section-label"><span>08 / EXPERIENCE</span><span>LEARNING THROUGH DOING</span></div>
       <div class="experience-heading"><h2 id="experience-title">From systems<br>to storytelling.</h2><p>Practical engineering projects and creative work, built around the people who use them.</p></div>
       <div class="experience-cards">
         <article class="experience-card experience-card-dark"><div class="experience-card-top"><span class="experience-index">01 / ENGINEERING</span><span class="experience-date">Oct 2025 — Present</span></div><p class="experience-company">Project-Based / Freelance</p><h3>Web & IoT<br>Project Lead</h3><p class="experience-description">Designing and building web applications and hardware systems for practical needs.</p><ul class="experience-highlights"><li>Developed a database-backed campus Lost and Found application.</li><li>Connected fingerprint authentication to a web attendance interface.</li><li>Built an Arduino-based system to automate fish drying.</li></ul><div class="experience-tags"><span>Web applications</span><span>IoT</span><span>Automation</span></div></article>
@@ -168,7 +228,7 @@
       </div>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-title"><div class="section-label"><span>08 / CONTACT</span><span>START A CONVERSATION</span></div><h2 id="contact-title">Let’s build<br>something useful<span>.</span></h2><div class="contact-bottom"><a class="email-link" href="mailto:jerowamelo11@gmail.com">jerowamelo11@gmail.com</a><div class="contact-links"><a href="tel:+639666736308">+63 966 6736 308</a><a href="https://github.com/Zek3zra" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.facebook.com/Zek3zra" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/zek3zra/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="Jerow-Amelo-CV.pdf" download>Download CV</a></div></div></section>
+    <section class="section contact" id="contact" aria-labelledby="contact-title"><div class="section-label"><span>09 / CONTACT</span><span>START A CONVERSATION</span></div><h2 id="contact-title">Let’s build<br>something useful<span>.</span></h2><div class="contact-bottom"><a class="email-link" href="mailto:jerowamelo11@gmail.com">jerowamelo11@gmail.com</a><div class="contact-links"><a href="tel:+639666736308">+63 966 6736 308</a><a href="https://github.com/Zek3zra" target="_blank" rel="noopener noreferrer">GitHub</a><a href="https://www.facebook.com/Zek3zra" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/zek3zra/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="Jerow-Amelo-CV.pdf" download>Download CV</a></div></div></section>
   </main>
   <footer><p>© <span id="year">2026</span> Jerow A. Amelo</p><p>La Carlota City, Negros Occidental</p><a href="#home">Back to top</a></footer>
   <dialog class="image-dialog" id="image-dialog" aria-labelledby="image-dialog-title"><div class="dialog-toolbar"><h2 id="image-dialog-title">Project preview</h2><button id="close-preview" type="button" aria-label="Close project preview">Close <span aria-hidden="true">×</span></button></div><img id="preview-image" alt=""></dialog>

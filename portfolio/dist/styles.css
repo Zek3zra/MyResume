@@ -127,3 +127,51 @@
 .header.menu-open .nav-icon-menu{display:none}
 .header.menu-open .nav-icon-close{display:block}
 @media(max-width:1100px){.nav-toggle{width:2.75rem;height:2.75rem;padding:0;justify-content:center}.nav-toggle svg{width:1.25rem;height:1.25rem}}
+
+/* AquaWatch thesis: hardware, leadership, and the documented prototype. */
+.thesis-feature{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:3rem;align-items:center}
+.thesis-team,.thesis-card{margin:0;min-width:0;background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.thesis-preview{aspect-ratio:4/3;border:0;border-bottom:1px solid var(--line);border-radius:0;background:#f0f0f0}
+.thesis-preview img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
+.thesis-preview.thesis-diagram{background:#fff}
+.thesis-diagram img,.thesis-diagram:hover img,.thesis-diagram:focus-visible img{object-fit:contain;filter:none;transform:none}
+.thesis-preview img[src$="campus-map-assembly.jpg"]{object-position:center 65%}
+.thesis-preview img[src$="installed-campus-map.jpg"]{object-position:center 55%}
+.thesis-team figcaption,.thesis-card figcaption{padding:1.25rem 1.4rem 1.4rem}
+.thesis-team h4,.thesis-card h4{font-family:var(--display);font-size:1.125rem;font-weight:500;letter-spacing:-.02em;line-height:1.4;margin:.45rem 0 .55rem}
+.thesis-team figcaption p,.thesis-card figcaption p{font-size:.875rem;color:var(--muted);line-height:1.65}
+.thesis-team .meta-label,.thesis-card .meta-label{font-size:.625rem;text-transform:uppercase}
+.thesis-role{display:inline-block;padding:.45rem .8rem;background:#111;color:white;border-radius:3px;font-size:.8125rem;font-weight:500}
+.thesis-copy h3{font-size:clamp(1.6rem,2.4vw,2.25rem);margin:1.25rem 0;line-height:1.25}
+.thesis-copy>p{color:var(--muted);font-size:1rem}
+.thesis-copy>p+p{margin-top:1rem}
+.thesis-results{margin-top:3rem;padding:2rem;border:1px solid var(--line);border-radius:4px;background:#fff}
+.thesis-results-heading{display:flex;justify-content:space-between;gap:2rem;align-items:start}
+.thesis-results-heading h3{font-size:1.4rem}
+.thesis-results-heading p{max-width:31rem;color:var(--muted);font-size:.875rem}
+.thesis-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin:1.75rem 0 1.5rem}
+.thesis-metrics>div{display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:1.25rem}
+.thesis-metrics dt{font-size:.8125rem;color:var(--muted)}
+.thesis-metrics dd{order:-1;margin:0 0 .5rem;font-family:var(--display);font-size:2.5rem;line-height:1.15;letter-spacing:-.045em}
+.thesis-metrics dd span{font-family:var(--font);font-size:.875rem;letter-spacing:0;color:var(--muted)}
+.thesis-test-note{font-size:.75rem;color:var(--muted);line-height:1.6}
+.thesis-gallery-group{margin-top:3rem}
+.thesis-gallery-heading{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem;align-items:start;margin-bottom:1.5rem}
+.thesis-gallery-heading h3{font-size:1.65rem;margin-top:.55rem}
+.thesis-gallery-heading>p{max-width:28rem;justify-self:end;text-align:right;color:var(--muted);font-size:.9375rem}
+.thesis-gallery{display:grid;position:relative;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+.thesis-gallery:focus-visible{outline:2px solid #888;outline-offset:5px}
+.thesis-gallery-controls{display:none}
+@media(min-width:1101px){.header nav{gap:.85rem;font-size:.8125rem}.header nav .nav-contact{padding:.6rem .9rem}}
+@media(max-width:1000px){.thesis-feature{grid-template-columns:1fr;gap:2rem}.thesis-copy{max-width:44rem}.thesis-results-heading{display:block}.thesis-results-heading p{margin-top:.75rem;max-width:100%}}
+@media(max-width:850px){.thesis-gallery-heading{display:block}.thesis-gallery-heading>p{text-align:left;max-width:100%;margin-top:.8rem}}
+@media(max-width:680px){
+  .thesis-copy h3{font-size:1.65rem}.thesis-copy h3 br{display:none}.thesis-team figcaption,.thesis-card figcaption{padding:1.1rem 1.15rem 1.25rem}
+  .thesis-results{padding:1.25rem;margin-top:2rem}.thesis-metrics{gap:1rem;grid-template-columns:1fr;margin:1.25rem 0}.thesis-metrics>div{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center;padding-top:1rem}.thesis-metrics dd{order:0;margin:0;font-size:1.65rem}.thesis-metrics dt{max-width:10rem}.thesis-metrics dd span{font-size:.6875rem}
+  .thesis-gallery-group{margin-top:2.5rem}.thesis-gallery-heading h3{font-size:1.45rem}
+  .thesis-gallery{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:#bbb transparent;padding-bottom:.6rem}
+  .thesis-card{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always}
+  .thesis-galleries-ready .thesis-gallery-controls{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-top:1rem}
+  .thesis-gallery-controls button{width:2.75rem;height:2.75rem;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:#fff;color:#111;font:inherit;font-size:1.2rem;cursor:pointer}
+  .thesis-gallery-controls button:disabled{opacity:.35;cursor:default}.thesis-gallery-controls p{text-align:center;font-size:.75rem;color:var(--muted);line-height:1.5}
+}
