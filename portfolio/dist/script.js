@@ -30,12 +30,122 @@ const previewImage = document.getElementById('preview-image');
 const previewTitle = document.getElementById('image-dialog-title');
 let previewTrigger;
 
+const previewStage = document.getElementById('preview-stage');
+const previewZoomIn = document.getElementById('preview-zoom-in');
+const previewZoomOut = document.getElementById('preview-zoom-out');
+const previewZoomLevel = document.getElementById('preview-zoom-level');
+let previewScale = 1;
+let previewPan = { x: 0, y: 0 };
+const previewPointers = new Map();
+
+function renderPreviewTransform() {
+  const width = previewStage.clientWidth;
+  const height = previewStage.clientHeight;
+  const imageStyle = getComputedStyle(previewImage);
+  const availableWidth = Math.max(0, width - parseFloat(imageStyle.paddingLeft) - parseFloat(imageStyle.paddingRight));
+  const availableHeight = Math.max(0, height - parseFloat(imageStyle.paddingTop) - parseFloat(imageStyle.paddingBottom));
+  const fit = previewImage.naturalWidth && previewImage.naturalHeight ? Math.min(availableWidth / previewImage.naturalWidth, availableHeight / previewImage.naturalHeight) : 0;
+  const limitX = Math.max(0, (previewImage.naturalWidth * fit * previewScale - width) / 2);
+  const limitY = Math.max(0, (previewImage.naturalHeight * fit * previewScale - height) / 2);
+  previewPan.x = Math.max(-limitX, Math.min(limitX, previewPan.x));
+  previewPan.y = Math.max(-limitY, Math.min(limitY, previewPan.y));
+  previewImage.style.transform = `translate(${previewPan.x}px, ${previewPan.y}px) scale(${previewScale})`;
+  previewStage.classList.toggle('is-zoomed', previewScale > 1);
+  previewZoomIn.disabled = previewScale >= 5;
+  previewZoomOut.disabled = previewScale <= 1;
+  const label = `${Math.round(previewScale * 100)}%`;
+  if (previewZoomLevel.textContent !== label) previewZoomLevel.textContent = label;
+}
+function resetPreviewZoom() {
+  previewScale = 1;
+  previewPan = { x: 0, y: 0 };
+  previewPointers.clear();
+  previewStage.classList.remove('is-dragging');
+  renderPreviewTransform();
+}
+function zoomPreview(scale, anchor = { x: 0, y: 0 }) {
+  const next = Math.max(1, Math.min(5, scale));
+  const ratio = next / previewScale;
+  previewPan.x = anchor.x - (anchor.x - previewPan.x) * ratio;
+  previewPan.y = anchor.y - (anchor.y - previewPan.y) * ratio;
+  previewScale = next;
+  if (next === 1) previewPan = { x: 0, y: 0 };
+  renderPreviewTransform();
+}
+function previewAnchor(point) {
+  const bounds = previewStage.getBoundingClientRect();
+  return { x: point.x - bounds.left - bounds.width / 2, y: point.y - bounds.top - bounds.height / 2 };
+}
+previewZoomIn.addEventListener('click', () => zoomPreview(previewScale + .25));
+previewZoomOut.addEventListener('click', () => zoomPreview(previewScale - .25));
+document.getElementById('preview-fit').addEventListener('click', resetPreviewZoom);
+previewImage.addEventListener('load', renderPreviewTransform);
+new ResizeObserver(renderPreviewTransform).observe(previewStage);
+previewStage.addEventListener('wheel', (event) => {
+  event.preventDefault();
+  zoomPreview(previewScale * Math.exp(-event.deltaY * .002), previewAnchor({ x: event.clientX, y: event.clientY }));
+}, { passive: false });
+previewStage.addEventListener('dblclick', (event) => {
+  zoomPreview(previewScale > 1 ? 1 : 2, previewAnchor({ x: event.clientX, y: event.clientY }));
+});
+previewStage.addEventListener('pointerdown', (event) => {
+  if ((event.pointerType === 'mouse' && event.button !== 0) || previewPointers.size >= 2) return;
+  event.preventDefault();
+  previewStage.focus({ preventScroll: true });
+  previewPointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+  previewStage.setPointerCapture(event.pointerId);
+  previewStage.classList.toggle('is-dragging', previewScale > 1);
+});
+previewStage.addEventListener('pointermove', (event) => {
+  const previous = previewPointers.get(event.pointerId);
+  if (!previous) return;
+  const before = [...previewPointers.values()];
+  const current = { x: event.clientX, y: event.clientY };
+  previewPointers.set(event.pointerId, current);
+  if (previewPointers.size === 2) {
+    const after = [...previewPointers.values()];
+    const distance = (points) => Math.hypot(points[1].x - points[0].x, points[1].y - points[0].y);
+    const center = (points) => ({ x: (points[0].x + points[1].x) / 2, y: (points[0].y + points[1].y) / 2 });
+    const oldCenter = center(before);
+    const newCenter = center(after);
+    const oldDistance = distance(before);
+    if (oldDistance > 0) zoomPreview(previewScale * distance(after) / oldDistance, previewAnchor(oldCenter));
+    previewPan.x += newCenter.x - oldCenter.x;
+    previewPan.y += newCenter.y - oldCenter.y;
+  } else if (previewScale > 1) {
+    previewPan.x += current.x - previous.x;
+    previewPan.y += current.y - previous.y;
+  }
+  renderPreviewTransform();
+  previewStage.classList.toggle('is-dragging', previewScale > 1);
+});
+function releasePreviewPointer(event) {
+  previewPointers.delete(event.pointerId);
+  if (!previewPointers.size) previewStage.classList.remove('is-dragging');
+}
+previewStage.addEventListener('pointerup', releasePreviewPointer);
+previewStage.addEventListener('pointercancel', releasePreviewPointer);
+previewStage.addEventListener('lostpointercapture', releasePreviewPointer);
+previewDialog.addEventListener('keydown', (event) => {
+  if (event.key === '+' || event.key === '=') zoomPreview(previewScale + .25);
+  else if (event.key === '-') zoomPreview(previewScale - .25);
+  else if (event.key === '0') resetPreviewZoom();
+  else if (previewScale > 1 && ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+    previewPan.x += event.key === 'ArrowLeft' ? 40 : event.key === 'ArrowRight' ? -40 : 0;
+    previewPan.y += event.key === 'ArrowUp' ? 40 : event.key === 'ArrowDown' ? -40 : 0;
+    renderPreviewTransform();
+  } else return;
+  event.preventDefault();
+});
+
+
 function openImagePreview(button, trigger = button) {
   previewTrigger = trigger;
   previewImage.src = button.dataset.preview;
   previewImage.alt = button.querySelector('img').alt;
   previewTitle.textContent = button.dataset.title;
   previewDialog.showModal();
+  resetPreviewZoom();
   document.body.classList.add('preview-open');
 }
 document.querySelectorAll('[data-preview]').forEach((button) => {
@@ -51,6 +161,7 @@ previewDialog.addEventListener('click', (event) => {
 });
 previewDialog.addEventListener('close', () => {
   document.body.classList.remove('preview-open');
+  resetPreviewZoom();
   previewImage.removeAttribute('src');
   previewTrigger?.focus({ preventScroll: true });
 });

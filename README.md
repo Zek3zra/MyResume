@@ -8,7 +8,7 @@ Built with **HTML, CSS, and JavaScript**, with no build step or package dependen
 
 - Responsive layout with a sticky header and mobile navigation.
 - Portrait and project previews with grayscale-to-color hover effects.
-- Fixed-size image dialogs that fit each complete image within the viewport without internal scrolling, with keyboard support.
+- Fixed-size image dialogs with zoom buttons, mouse-wheel and pinch zoom, drag panning, keyboard controls, and a Fit reset. Images initially fit the viewport without internal scrolling.
 - An Electronics section with 17 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
 - An AquaWatch key-project and thesis feature identifying Jerow as Project & Thesis Leader, with nine titled photos and diagrams, documented prototype results, and swipe galleries on phones.
 - Five web projects with screenshots and live website links, including the separate AquaWatch web dashboard.
