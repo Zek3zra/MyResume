@@ -68,7 +68,7 @@
 .electronics-preview img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:center}
 .electronics-preview-layout img{object-fit:contain}
 .electronics-preview img[src$="digital-trainer-power-supply.jpg"]{object-position:center 40%}
-.electronics-preview img[src$="adjustable-555-timer-3d.jpg"]{object-position:center 60%}
+.electronics-preview img[src$="adjustable-pulse-generator-3d.jpg"]{object-position:center 60%}
 .electronics-preview img[src$="uart-communication.jpg"],.electronics-preview img[src$="spi-communication.jpg"]{object-position:center 70%}
 .electronics-tile figcaption{padding:1.25rem 1.3rem 1.5rem}
 .electronics-tile .meta-label{font-size:.625rem;text-transform:uppercase}

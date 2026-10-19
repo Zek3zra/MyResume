@@ -11,6 +11,7 @@ Built with **HTML, CSS, and JavaScript**, with no build step or package dependen
 - Fixed-size image dialogs with zoom buttons, mouse-wheel and pinch zoom, drag panning, keyboard controls, and a Fit reset. Images initially fit the viewport without internal scrolling.
 - An Electronics section with 18 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
 - An AquaWatch key-project and thesis feature identifying Jerow as Project & Thesis Leader, with nine titled photos and diagrams, documented prototype results, and swipe galleries on phones.
+- Timing and display projects include a potentiometer-adjustable pulse generator and an automatic seven-segment timer display using a 74LS48 decoder.
 - Five web projects with screenshots and live website links, including the separate AquaWatch web dashboard.
 - Client projects: Automated Fish Dryer, Arduino Client Projects, and Biometric Attendance.
 - Automatically updating GitHub contribution calendar for [@Zek3zra](https://github.com/Zek3zra), plus manual refresh.
