@@ -9,7 +9,7 @@ Built with **HTML, CSS, and JavaScript**, with no build step or package dependen
 - Responsive layout with a sticky header and mobile navigation.
 - Portrait and project previews with grayscale-to-color hover effects.
 - Fixed-size image dialogs with zoom buttons, mouse-wheel and pinch zoom, drag panning, keyboard controls, and a Fit reset. Images initially fit the viewport without internal scrolling.
-- An Electronics section with 17 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
+- An Electronics section with 18 titled images across six categories: timing and displays, power supplies, LED circuits, PCB fabrication, digital logic, and serial communication.
 - An AquaWatch key-project and thesis feature identifying Jerow as Project & Thesis Leader, with nine titled photos and diagrams, documented prototype results, and swipe galleries on phones.
 - Five web projects with screenshots and live website links, including the separate AquaWatch web dashboard.
 - Client projects: Automated Fish Dryer, Arduino Client Projects, and Biometric Attendance.
@@ -100,4 +100,4 @@ Technological University of the Philippines Visayas
 
 ## Portfolio order
 
-About → Electronics → Key project & thesis → Client hardware → Web systems → Skills → Education → Experience → Contact. Electronics includes original PCB layouts, 3D views, fabricated boards, ALU work, and UART/SPI/I²C labs. Every new image uses the existing full-size preview dialog. Sticky navigation links directly to Electronics, Thesis, Client hardware, and Web systems. The thesis feature groups photos into sensing and embedded hardware, the physical campus dashboard, and campus setup. Reported results are qualified as controlled prototype tests across two nodes.
+About → Electronics → Key project & thesis → Client hardware → Web systems → Skills → Education → Experience → Contact. Electronics includes original PCB layouts, 3D views, fabricated boards, ALU work, an Assembly-programmed 7400-series IC tester using an older system unit’s 24-pin connection, and UART/SPI/I²C labs. Every new image uses the existing full-size preview dialog. Sticky navigation links directly to Electronics, Thesis, Client hardware, and Web systems. The thesis feature groups photos into sensing and embedded hardware, the physical campus dashboard, and campus setup. Reported results are qualified as controlled prototype tests across two nodes.

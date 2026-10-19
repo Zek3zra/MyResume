@@ -188,3 +188,5 @@
 .preview-stage>img{transform-origin:center;pointer-events:none;will-change:transform}
 .preview-help{position:absolute;left:50%;bottom:.6rem;transform:translateX(-50%);max-width:calc(100% - 1rem);margin:0;padding:.25rem .6rem;border-radius:3px;background:#111c;color:#ddd;font-size:.6875rem;line-height:1.5;text-align:center;pointer-events:none}
 @media(max-width:680px){.dialog-toolbar{grid-template-columns:minmax(0,1fr) auto;gap:.6rem .75rem}.preview-zoom-controls{grid-column:1/-1;grid-row:2;justify-content:center}.dialog-toolbar #close-preview{grid-column:2;grid-row:1}.preview-help{font-size:.625rem;white-space:nowrap}}
+
+.electronics-preview img[src$="7400-series-ic-tester.jpg"]{object-position:center 60%}
